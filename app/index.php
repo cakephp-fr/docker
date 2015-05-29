@@ -35,5 +35,6 @@
 				<b><?php echo $link["name"]; ?></b> listening in <?php echo $link["port"]+"/"+$link["proto"]; ?> available at <?php echo $link["value"]; ?><br />
 			<?php endforeach; ?>
 		<?php endif; ?>
+        <?php phpinfo(); ?>
 	</body>
 </html>

@@ -1,0 +1,2 @@
+2015/05/29 13:35:48 [error] 6#6: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.59.3, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.59.103"
+2015/05/29 13:35:48 [error] 6#6: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.59.3, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.59.103"

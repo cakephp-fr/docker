@@ -1,9 +1,9 @@
 application:
     #image: cake17/code
-    build: app
+    build: .
     volumes:
-        - app:/var/www/cakephp
-        - app/logs:/var/www/app/logs
+        - .:/var/www/app
+        - logs:/var/www/app/logs
     tty: true
 db:
     image: mysql
@@ -16,7 +16,7 @@ db:
         MYSQL_PASSWORD: root
 php:
     #image: cake17/php-fpm
-    build: php-fpm
+    build: ../php-fpm
     expose:
         - 9000:9000
     volumes_from:
@@ -25,7 +25,7 @@ php:
         - db
 nginx:
     #image: cake17/nginx
-    image: nginx
+    build: ../nginx
     ports:
         - 80:80
     links:
@@ -33,4 +33,4 @@ nginx:
     volumes_from:
         - application
     volumes:
-        - app/logs/nginx/:/var/log/nginx
+        - logs/nginx:/var/log/nginx
