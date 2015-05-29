@@ -1,3 +1,5 @@
+[Test repo] Please use https://github.com/occitech/docker/tree/master/cakephp/3.x
+
 ## Using Docker with CakePHP 3.x applications ##
 
 It is based on [Tutum Dockerfile](https://github.com/tutumcloud/tutum-docker-php)
