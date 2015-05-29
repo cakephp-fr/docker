@@ -1,24 +1,23 @@
 [Test repo] Please use https://github.com/occitech/docker/tree/master/cakephp/3.x
 
-## Using Docker with CakePHP 3.x applications ##
-
-It is based on [Tutum Dockerfile](https://github.com/tutumcloud/tutum-docker-php)
-and on [php official Dockerfile](https://github.com/docker-library/php)
-
-Still under dev...
-
 1. **First install docker on your computer with the [official doc](https://docs.docker.com/installation/#installation).**
 
-   On a mac, it will install boot2docker (a small vm) and you'll be able to launch Boot2docker app in the `Applications` folder that opens a Terminal bash.
+   On a mac, it will install boot2docker (a small vm) and you'll be able to
+   launch Boot2docker app in the `Applications` folder that opens a Terminal
+   bash.
 
-   If you use boot2docker, get the ip of your boot2docker vm : `boot2docker ip` (ex: 192.168.59.104) and add it in your /etc/hosts file : `local.dev 192.168.59.104`
+   IMPORTANT : If you use boot2docker, get the ip of your boot2docker vm :
+   `boot2docker ip` (ex: 192.168.59.104). You will enter this address in your
+   webbrowser to see your web pages.
 
-2. **Clone this repo anywhere in your computer, go in the folder and launch `docker build -t cake17/cakephp .`**
+2. **Clone this repo anywhere in your computer, go in the folder and launch
+   `docker build -t cake17/cakephp .`**
 
-   You'll then have an image named `cake17/cakephp` on your computer with all libs
-   needed to run CakePHP 3.x apps : ubuntu, apache2, mcrypt, etc...
+   You'll then have an image named `cake17/cakephp` on your computer with all
+   libs needed to run CakePHP 3.x apps : ubuntu, apache2, mcrypt, etc...
 
-   When it will be stable, I'll put this repo in the DockHub, so this 2. will not be necessary.
+   When it will be stable, I'll put this repo in the DockHub, so this 2. will
+   not be necessary.
 
 3. **In your app, add a Dockerfile like this:**
 

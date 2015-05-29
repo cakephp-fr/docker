@@ -1,0 +1,36 @@
+application:
+    #image: cake17/code
+    build: cakephp
+    volumes:
+        - cakephp:/var/www/cakephp
+        - cakephp/logs:/var/www/cakephp/logs
+    tty: true
+db:
+    image: mysql
+    ports:
+        - 3306:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: cakephp
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+php:
+    #image: cake17/php-fpm
+    build: php-fpm
+    expose:
+        - 9000:9000
+    volumes_from:
+        - application
+    links:
+        - db
+nginx:
+    #image: cake17/nginx
+    image: nginx
+    ports:
+        - 80:80
+    links:
+        - php
+    volumes_from:
+        - application
+    volumes:
+        - logs/nginx/:/var/log/nginx
