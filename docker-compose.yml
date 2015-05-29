@@ -1,9 +1,9 @@
 application:
     #image: cake17/code
-    build: cakephp
+    build: app
     volumes:
-        - cakephp:/var/www/cakephp
-        - cakephp/logs:/var/www/cakephp/logs
+        - app:/var/www/cakephp
+        - app/logs:/var/www/app/logs
     tty: true
 db:
     image: mysql
@@ -33,4 +33,4 @@ nginx:
     volumes_from:
         - application
     volumes:
-        - logs/nginx/:/var/log/nginx
+        - app/logs/nginx/:/var/log/nginx
