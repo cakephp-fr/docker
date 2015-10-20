@@ -9,7 +9,7 @@ RUN echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
 ENV COMPOSER_HOME /root/composer
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.0.0-alpha8
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.0.0-alpha10
 
 # Display version information
 RUN php --version
