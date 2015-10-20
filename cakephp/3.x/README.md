@@ -1,13 +1,15 @@
-[Test repo] Please use https://github.com/occitech/docker/tree/master/cakephp/3.x
+# Docker for CakePHP 3.x #
+
+I took some tips from this [nice repo](https://github.com/eko/docker-symfony)
 
 1. **First install docker on your computer with the [official doc](https://docs.docker.com/installation/#installation).**
 
-   On a mac, it will install boot2docker (a small vm) and you'll be able to
-   launch Boot2docker app in the `Applications` folder that opens a Terminal
-   bash.
+   On a mac, Docker Toolbox will install everything you need to be able to
+   launch containers.
 
-   IMPORTANT : If you use boot2docker, get the ip of your boot2docker vm :
-   `boot2docker ip` (ex: 192.168.59.104). You will enter this address in your
+   IMPORTANT : On a mac, a small vm is installed, you can type
+   `docker-machine ip default` (ex: 192.168.59.104) to know on which host
+   containers will be launched. You will enter this address in your
    webbrowser to see your web pages.
 
 2. **Clone this repo anywhere in your computer.
@@ -18,10 +20,9 @@
    When it will be stable, I'll put this repo in the DockHub, so this 2. will
    not be necessary.
 
-3. **In your app, add a `docker-compose.yml` file like in the `app/config/development/docker-compose.yml`:**
+3. **In your app, copy the `docker-compose.yml` file like in `cakephp/3.x/docker-composer.yml`:**
 
    And run `docker-compose up -d`
-
 
 
 **Launch your migrations**
@@ -33,8 +34,19 @@
 
 **Launch composer update**
 
+**change your app.php file**
 
-
+    'Datasources' => [
+        'default' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'persistent' => false,
+            'host' => '**192.168.59.104**', // see 1. above
+            'username' => 'root', // MYSQL_USER
+            'password' => 'root', // MYSQL_PASSWORD
+            'database' => 'symfony', // MYSQL_DATABASE
+        ]
+    ]
 
 ## License ##
 
