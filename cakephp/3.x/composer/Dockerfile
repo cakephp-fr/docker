@@ -2,7 +2,6 @@ FROM cake17/php-fpm
 
 MAINTAINER cake17 <cake17@cake-websites.com>
 
-
 # Set memory limit
 RUN echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
 

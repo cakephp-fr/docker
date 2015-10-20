@@ -1,9 +1,0 @@
-2015/05/29 13:35:48 [error] 6#6: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.59.3, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.59.103"
-2015/05/29 13:35:48 [error] 6#6: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 192.168.59.3, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "192.168.59.103"
-2015/06/01 07:35:21 [emerg] 1#0: open() "/var/www/example.com/log/access.log" failed (2: No such file or directory)
-2015/06/01 07:37:42 [emerg] 1#0: open() "/var/www/example.com/log/access.log" failed (2: No such file or directory)
-2015/06/01 07:39:12 [emerg] 1#0: open() "/var/www/example.com/log/access.log" failed (2: No such file or directory)
-2015/06/03 10:39:53 [emerg] 1#1: "daemon" directive is duplicate in /etc/nginx/nginx.conf:29
-2015/06/03 10:42:29 [emerg] 1#1: "daemon" directive is duplicate in /etc/nginx/nginx.conf:29
-2015/06/03 10:43:34 [emerg] 1#1: "daemon" directive is duplicate in /etc/nginx/nginx.conf:29
-2015/06/03 10:50:27 [emerg] 1#1: "daemon" directive is duplicate in /etc/nginx/nginx.conf:29
