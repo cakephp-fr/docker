@@ -2,7 +2,9 @@
 
 I took some tips from this [nice repo](https://github.com/eko/docker-symfony)
 
-1. **First install docker on your computer with the [official doc](https://docs.docker.com/installation/#installation).**
+## Install docker
+
+First install docker on your computer with the [official doc](https://docs.docker.com/installation/#installation).
 
    On a mac, Docker Toolbox will install everything you need to be able to
    launch containers.
@@ -12,7 +14,9 @@ I took some tips from this [nice repo](https://github.com/eko/docker-symfony)
    containers will be launched. You will enter this address in your
    webbrowser to see your web pages.
 
-2. **In your app, add a `docker-compose.yml` file at the root of your app**
+## Add a docker-compose.yml file
+
+In your app, add a `docker-compose.yml` file at the root of your app
 
 You can find an example in `cakephp/3.x/docker-composer.yml`.
 
@@ -37,7 +41,7 @@ Then run::
     docker-compose up -d
 
 
-3. Common dev tasks, usage of `composer` and `cake` console.
+## Common dev tasks, usage of `composer` and `cake` console.
 
 **For Composer**
 
