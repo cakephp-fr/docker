@@ -14,9 +14,6 @@ RUN apt-get update && apt-get install -y \
   php5-curl \
   php5-intl
 
-# Set memory limit for Composer
-RUN echo "memory_limit=1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
-
 # Set environmental variables
 ENV COMPOSER_HOME /root/composer
 
