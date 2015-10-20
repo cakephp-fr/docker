@@ -1,5 +1,5 @@
 app:
-    build: .
+    image: debian:jessie
     volumes:
         - .:/var/www/app
         - ./logs/cakephp:/var/www/app/logs
@@ -13,18 +13,26 @@ db:
         MYSQL_DATABASE: cakephp
         MYSQL_USER: root
         MYSQL_PASSWORD: root
+# If you prefer Postgres
+#db:
+#    image: postgres
+#    ports:
+#        - 5432:5432
+#    environment:
+#        POSTGRES_USER: root
+#        POSTGRES_PASSWORD: root
+#        POSTGRES_DB: cakephp
 php:
-    image: cake17/php-fpm
-    #build: ../cakephp/3.x/php-fpm/5.6
+    image: cake17/cakephp:php56-fpm
     expose:
         - 9000:9000
     volumes_from:
         - app
     links:
         - db
+    working_dir: /var/www/app
 nginx:
-    image: cake17/nginx
-    #build: ../cakephp/3.x/nginx
+    image: cake17/cakephp:nginx
     ports:
         - 80:80
     links:

@@ -1,4 +1,4 @@
-FROM cake17/php-fpm
+FROM cake17/php56-fpm
 
 MAINTAINER cake17 <cake17@cake-websites.com>
 

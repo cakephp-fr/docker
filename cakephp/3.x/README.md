@@ -12,41 +12,47 @@ I took some tips from this [nice repo](https://github.com/eko/docker-symfony)
    containers will be launched. You will enter this address in your
    webbrowser to see your web pages.
 
-2. **Clone this repo anywhere in your computer.
+2. **In your app, add a `docker-compose.yml` file at the root of your app**
 
-   Go in the folder /nginx and launch `docker build -t cake17/nginx .`**
-   Go in the folder /php-fpm and launch `docker build -t cake17/php-fpm .`**
+You can find an example in `cakephp/3.x/docker-composer.yml`.
 
-   When it will be stable, I'll put this repo in the DockHub, so this 2. will
-   not be necessary.
+Some configurations:
 
-3. **In your app, copy the `docker-compose.yml` file like in `cakephp/3.x/docker-composer.yml`:**
-
-   And run `docker-compose up -d`
-
-
-**Launch your migrations**
-
-   To create your tables. You can use the [Migrations cakephp-plugin](https://github.com/cakephp/migrations).
-
-        # get CONTAINER_APP_ID with docker ps
-        docker exec -it CONTAINER_APP_ID ./bin/cake migrations migrate
-
-**Launch composer update**
-
-**change your app.php file**
+**For database config**, change your `app.php` file:
 
     'Datasources' => [
         'default' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => '**192.168.59.104**', // see 1. above
+            'host' => '**192.168.59.104**', // run `docker-machine ip default` on a mac
             'username' => 'root', // MYSQL_USER
             'password' => 'root', // MYSQL_PASSWORD
             'database' => 'symfony', // MYSQL_DATABASE
         ]
     ]
+
+Then run::
+
+    docker-compose up -d
+
+
+3. Common dev tasks, usage of `composer` and `cake` console.
+
+**For Composer**
+
+The best way to me is to add a `composer.phar` at the root of your repository.
+
+    # get CONTAINER_APP_ID with docker ps
+    docker exec -it CONTAINER_APP_ID ./composer.phar install
+
+**For database migrations**
+
+To create your tables. You can use the [Migrations cakephp-plugin](https://github.com/cakephp/migrations):
+
+    # get CONTAINER_APP_ID with docker ps
+    docker exec -it CONTAINER_APP_ID ./bin/cake migrations migrate
+
 
 ## License ##
 
