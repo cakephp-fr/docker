@@ -2,8 +2,8 @@ FROM nginx:1.9.5
 
 MAINTAINER cake17 <cake17@cake-websites.com>
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY cakephp.conf /etc/nginx/sites-available/cakephp.conf
+ADD nginx.conf /etc/nginx/nginx.conf
+ADD cakephp.conf /etc/nginx/sites-available/cakephp.conf
 
 RUN ln -s /etc/nginx/sites-available/cakephp.conf /etc/nginx/sites-enabled/cakephp
 RUN rm /etc/nginx/sites-enabled/default
