@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
   php5-imagick \
   php5-curl \
   php5-intl \
+  php5-redis \
   php5-sqlite
 
 #COPY cakephp.ini /etc/php5/fpm/conf.d/cakephp.ini
