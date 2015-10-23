@@ -4,25 +4,29 @@ app:
         - .:/var/www/app
         - ./logs/cakephp:/var/www/app/logs
     tty: true
+# If you prefer Mysql
 db:
-    image: mysql
+    image: mysql:5.6.27
     ports:
         - 3306:3306
     volumes:
         - ./logs/mysql:/var/log/mysql
     environment:
         MYSQL_ROOT_PASSWORD: root
+        # To create a default database
         MYSQL_DATABASE: cakephp
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
+        # To create a default user
+        MYSQL_USER: user
+        # To create a default pass
+        MYSQL_PASSWORD: pass
 # If you prefer Postgres
-#db:
-#    image: postgres
+# db:
+#    image: postgres:9.4.5
 #    ports:
 #        - 5432:5432
 #    environment:
-#        POSTGRES_USER: root
-#        POSTGRES_PASSWORD: root
+#        POSTGRES_USER: user
+#        POSTGRES_PASSWORD: pass
 #        POSTGRES_DB: cakephp
 php:
     image: cake17/cakephp:php56-fpm
@@ -33,6 +37,22 @@ php:
     links:
         - db
     working_dir: /var/www/app
+    environment:
+        - CAKEPHP_DEBUG=1
+        - CAKEPHP_TIMEZONE_DEFAULT=UTC
+        - CAKEPHP_LOCALE_DEFAULT=en_US
+        - CAKEPHP_ENCODING_DEFAULT=UTF-8
+        - CAKEPHP_SECURITY_SALT=__SALT__
+        - CAKEPHP_TRANSPORT_DEFAULT_URL=smtp://user:password@hostname:port?tls=null&client=null&timeout=30
+        - CAKEPHP_CACHE_DEFAULT_URL=File:///?prefix=myapp_&serialize=true&timeout=3600&path=../tmp/cache/
+        - CAKEPHP_CACHE_CORE_URL=File:///?prefix=myapp_cake_core_&serialize=true&timeout=3600&path=../tmp/cache/persistent/
+        - CAKEPHP_CACHE_MODEL_URL=File:///?prefix=myapp_cake_model_&serialize=true&timeout=3600&path=../tmp/cache/models/
+        #- CAKEPHP_DATABASE_DEFAULT_URL=mysql://user:pass@192.168.99.100/cakephp
+        # type : 'docker-machine ip default' to get the host (in the example : 192.168.99.100)
+        - CAKEPHP_DATABASE_DEFAULT_URL=postgres://user:pass@192.168.99.100/cakephp
+        - CAKEPHP_DATABASE_TEST_URL=''
+        - CAKEPHP_LOG_DEBUG_URL=file:///?levels[]=notice&levels[]=info&levels[]=debug&file=debug&path=../logs/
+        - CAKEPHP_LOG_ERROR_URL=file:///?levels[]=warning&levels[]=error&levels[]=critical&levels[]=alert&levels[]=emergency&file=error&path=../logs/
 nginx:
     image: cake17/cakephp:nginx
     ports:

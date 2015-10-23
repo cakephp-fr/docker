@@ -14,29 +14,16 @@ First install docker on your computer with the [official doc](https://docs.docke
    containers will be launched. You will enter this address in your
    webbrowser to see your web pages.
 
-## Add a docker-compose.yml file
+## Add a docker-compose.yml file and replace config files
 
-In your app, add a `docker-compose.yml` file at the root of your app
+- In your app, add a `docker-compose.yml` file at the root of your app
 
 You can find an example in `cakephp/3.x/docker-composer.yml`.
 
-Some configurations:
+- You can replace your `app.php` and `bootstrap.php` with the provided config
+files.
 
-**For database config**, change your `app.php` file:
-
-    'Datasources' => [
-        'default' => [
-            'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Mysql',
-            'persistent' => false,
-            'host' => '**192.168.59.104**', // run `docker-machine ip default` on a mac
-            'username' => 'root', // MYSQL_USER
-            'password' => 'root', // MYSQL_PASSWORD
-            'database' => 'symfony', // MYSQL_DATABASE
-        ]
-    ]
-
-Then run::
+Then run:
 
     docker-compose up -d
 
@@ -47,15 +34,15 @@ Then run::
 
 The best way to me is to add a `composer.phar` at the root of your repository.
 
-    # get CONTAINER_APP_ID with docker ps
-    docker exec -it CONTAINER_APP_ID ./composer.phar install
+    # get CONTAINER_PHP_ID with docker ps
+    docker exec -it CONTAINER_PHP_ID ./composer.phar install
 
 **For database migrations**
 
 To create your tables. You can use the [Migrations cakephp-plugin](https://github.com/cakephp/migrations):
 
-    # get CONTAINER_APP_ID with docker ps
-    docker exec -it CONTAINER_APP_ID ./bin/cake migrations migrate
+    # get CONTAINER_PHP_ID with docker ps
+    docker exec -it CONTAINER_PHP_ID ./bin/cake migrations migrate
 
 
 ## License ##
