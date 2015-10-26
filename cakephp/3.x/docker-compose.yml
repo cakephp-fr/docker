@@ -4,34 +4,36 @@ app:
         - .:/var/www/app
         - ./logs/cakephp:/var/www/app/logs
     tty: true
-# If you prefer Mysql
 db:
     image: mysql:5.6.27
     ports:
-        - 3306:3306
+        - 3306
+    volumes_from:
+        - app
     volumes:
         - ./logs/mysql:/var/log/mysql
     environment:
         MYSQL_ROOT_PASSWORD: root
-        # To create a default database
-        MYSQL_DATABASE: cakephp
-        # To create a default user
+        MYSQL_DATABASE: my_app
         MYSQL_USER: user
-        # To create a default pass
         MYSQL_PASSWORD: pass
 # If you prefer Postgres
 # db:
-#    image: postgres:9.4.5
-#    ports:
-#        - 5432:5432
-#    environment:
-#        POSTGRES_USER: user
-#        POSTGRES_PASSWORD: pass
-#        POSTGRES_DB: cakephp
+#     image: postgres:9.4.5
+#     ports:
+#         - 5432:5432
+#     volumes_from:
+#         - app
+#     volumes:
+#         - ./logs/postgresql:/var/log/postgresql
+#     environment:
+#         POSTGRES_USER: user
+#         POSTGRES_PASSWORD: pass
+#         POSTGRES_DB: my_app
 php:
     image: cake17/cakephp:php56-fpm
     expose:
-        - 9000:9000
+        - 9000
     volumes_from:
         - app
     links:
@@ -47,16 +49,19 @@ php:
         - CAKEPHP_CACHE_DEFAULT_URL=File:///?prefix=myapp_&serialize=true&timeout=3600&path=../tmp/cache/
         - CAKEPHP_CACHE_CORE_URL=File:///?prefix=myapp_cake_core_&serialize=true&timeout=3600&path=../tmp/cache/persistent/
         - CAKEPHP_CACHE_MODEL_URL=File:///?prefix=myapp_cake_model_&serialize=true&timeout=3600&path=../tmp/cache/models/
-        #- CAKEPHP_DATABASE_DEFAULT_URL=mysql://user:pass@192.168.99.100/cakephp
-        # type : 'docker-machine ip default' to get the host (in the example : 192.168.99.100)
-        - CAKEPHP_DATABASE_DEFAULT_URL=postgres://user:pass@192.168.99.100/cakephp
-        - CAKEPHP_DATABASE_TEST_URL=''
+        # If you prefer Postgres
+        #- CAKEPHP_DATABASE_DEFAULT_URL=postgres://user:pass@db/my_app
+        - CAKEPHP_DATABASE_DEFAULT_URL=mysql://user:pass@db/my_app
+        - CAKEPHP_DATABASE_TEST_URL=mysql://user:pass@db/test_myapp
         - CAKEPHP_LOG_DEBUG_URL=file:///?levels[]=notice&levels[]=info&levels[]=debug&file=debug&path=../logs/
         - CAKEPHP_LOG_ERROR_URL=file:///?levels[]=warning&levels[]=error&levels[]=critical&levels[]=alert&levels[]=emergency&file=error&path=../logs/
 nginx:
     image: cake17/cakephp:nginx
     ports:
-        - 80:80
+        # With default config, you can check on which port the server
+        # runs by typing 'docker-compose ps' and check the nginx server port
+        # Otherwise, change this to 80:80 if you want a static port for your app
+        - 80
     links:
         - php
     volumes_from:
