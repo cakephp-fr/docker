@@ -21,7 +21,7 @@ db:
 # db:
 #     image: postgres:9.4.5
 #     ports:
-#         - 5432:5432
+#         - 5432
 #     volumes_from:
 #         - app
 #     volumes:
@@ -40,21 +40,21 @@ php:
         - db
     working_dir: /var/www/app
     environment:
-        - CAKEPHP_DEBUG=1
-        - CAKEPHP_TIMEZONE_DEFAULT=UTC
-        - CAKEPHP_LOCALE_DEFAULT=en_US
-        - CAKEPHP_ENCODING_DEFAULT=UTF-8
-        - CAKEPHP_SECURITY_SALT=__SALT__
-        - CAKEPHP_TRANSPORT_DEFAULT_URL=smtp://user:password@hostname:port?tls=null&client=null&timeout=30
-        - CAKEPHP_CACHE_DEFAULT_URL=File:///?prefix=myapp_&serialize=true&timeout=3600&path=../tmp/cache/
-        - CAKEPHP_CACHE_CORE_URL=File:///?prefix=myapp_cake_core_&serialize=true&timeout=3600&path=../tmp/cache/persistent/
-        - CAKEPHP_CACHE_MODEL_URL=File:///?prefix=myapp_cake_model_&serialize=true&timeout=3600&path=../tmp/cache/models/
+        - APP_DEBUG=1
+        - APP_TIMEZONE_DEFAULT=UTC
+        - APP_LOCALE_DEFAULT=en_US
+        - APP_ENCODING_DEFAULT=UTF-8
+        - APP_SECURITY_SALT=__SALT__
+        - MAIL_TRANSPORT_DEFAULT_URL=smtp://user:password@hostname:port?tls=null&client=null&timeout=30
+        - CACHE_DEFAULT_URL=File:///?prefix=myapp_&serialize=true&timeout=3600&path=../tmp/cache/
+        - CACHE_CORE_URL=File:///?prefix=myapp_cake_core_&serialize=true&timeout=3600&path=../tmp/cache/persistent/
+        - CACHE_MODEL_URL=File:///?prefix=myapp_cake_model_&serialize=true&timeout=3600&path=../tmp/cache/models/
         # If you prefer Postgres
         #- CAKEPHP_DATABASE_DEFAULT_URL=postgres://user:pass@db/my_app
-        - CAKEPHP_DATABASE_DEFAULT_URL=mysql://user:pass@db/my_app
-        - CAKEPHP_DATABASE_TEST_URL=mysql://user:pass@db/test_myapp
-        - CAKEPHP_LOG_DEBUG_URL=file:///?levels[]=notice&levels[]=info&levels[]=debug&file=debug&path=../logs/
-        - CAKEPHP_LOG_ERROR_URL=file:///?levels[]=warning&levels[]=error&levels[]=critical&levels[]=alert&levels[]=emergency&file=error&path=../logs/
+        - DATABASE_DEFAULT_URL=mysql://user:pass@db/my_app
+        - DATABASE_TEST_URL=mysql://user:pass@db/test_myapp
+        - LOG_DEBUG_URL=file:///?levels[]=notice&levels[]=info&levels[]=debug&file=debug&path=../logs/
+        - LOG_ERROR_URL=file:///?levels[]=warning&levels[]=error&levels[]=critical&levels[]=alert&levels[]=emergency&file=error&path=../logs/
 nginx:
     image: cake17/cakephp:nginx
     ports:

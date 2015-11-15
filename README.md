@@ -6,4 +6,5 @@
 
 ## For CakePHP docs
 
-- [sphinx with latex](https://github.com/cake17/docker/tree/master/cakephp-docs)
+- [sphinx with latex](https://github.com/cake17/docker/tree/master/cakephp/docs)
+- [Only sphinx](https://github.com/cake17/docker/tree/master/cakephp/docs/light)

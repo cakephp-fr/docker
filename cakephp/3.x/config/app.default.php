@@ -9,7 +9,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => env('CAKEPHP_DEBUG', false),
+    'debug' => env('APP_DEBUG', false),
 
     /**
      * Configure basic information about the application.
@@ -37,7 +37,7 @@ return [
      */
     'App' => [
         'namespace' => 'App',
-        'encoding' => env('CAKEPHP_ENCODING_DEFAULT', 'UTF-8'),
+        'encoding' => env('APP_ENCODING_DEFAULT', 'UTF-8'),
         'base' => false,
         'dir' => 'src',
         'webroot' => 'webroot',
@@ -62,7 +62,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('CAKEPHP_SECURITY_SALT', '__SALT__'),
+        'salt' => env('APP_SECURITY_SALT', '__SALT__'),
     ],
 
     /**
@@ -82,7 +82,7 @@ return [
      */
     'Cache' => [
         'default' => [
-            'url' => env('CAKEPHP_CACHE_DEFAULT_URL', 'File:///?prefix=myapp_&serialize=true&timeout=3600&path=../tmp/cache/')
+            'url' => env('CACHE_DEFAULT_URL', 'File:///?prefix=myapp_&serialize=true&timeout=3600&path=../tmp/cache/')
             // 'className' => 'File',
             // 'path' => CACHE,
         ],
@@ -92,7 +92,7 @@ return [
          * Translation cache files are stored with this configuration.
          */
         '_cake_core_' => [
-            'url' => env('CAKEPHP_CACHE_CORE_URL', 'File:///?prefix=myapp_cake_core_&serialize=true&timeout=3600&path=../tmp/cache/persistent/')
+            'url' => env('CACHE_CORE_URL', 'File:///?prefix=myapp_cake_core_&serialize=true&timeout=3600&path=../tmp/cache/persistent/')
             // 'className' => 'File',
             // 'prefix' => 'myapp_cake_core_',
             // 'path' => CACHE . 'persistent/',
@@ -106,7 +106,7 @@ return [
          * in connections.
          */
         '_cake_model_' => [
-            'url' => env('CAKEPHP_CACHE_MODEL_URL', 'File:///?prefix=myapp_cake_model_&serialize=true&timeout=3600&path=../tmp/cache/models/')
+            'url' => env('CACHE_MODEL_URL', 'File:///?prefix=myapp_cake_model_&serialize=true&timeout=3600&path=../tmp/cache/models/')
             // 'className' => 'File',
             // 'prefix' => 'myapp_cake_model_',
             // 'path' => CACHE . 'models/',
@@ -170,7 +170,7 @@ return [
      */
     'EmailTransport' => [
         'default' => [
-            'url' => env('CAKEPHP_DATABASE_DEFAULT_URL', 'mail://username:password@localhost:25?tls=null&client=null&timeout=30')
+            'url' => env('MAIL_TRANSPORT_DEFAULT_URL', 'mail://username:password@localhost:25?tls=null&client=null&timeout=30')
             // 'className' => 'Mail',
             // // The following keys are used in SMTP transports
             // 'host' => 'localhost',
@@ -209,7 +209,7 @@ return [
      */
     'Datasources' => [
         'default' => [
-            'url' => env('CAKEPHP_DATABASE_DEFAULT_URL', 'mysql://root:root@192.168.99.100/cakephp')
+            'url' => env('DATABASE_DEFAULT_URL', 'mysql://root:root@192.168.99.100/cakephp')
             // 'className' => 'Cake\Database\Connection',
             // 'driver' => 'Cake\Database\Driver\Mysql',
             // 'persistent' => false,
@@ -274,7 +274,7 @@ return [
      */
     'Log' => [
         'debug' => [
-            'url' => env('CAKEPHP_LOG_DEBUG_URL',
+            'url' => env('LOG_DEBUG_URL',
             'file:///?levels[]=notice&levels[]=info&levels[]=debug&file=debug&path=../logs/')
             // 'className' => 'Cake\Log\Engine\FileLog',
             // 'path' => LOGS,
@@ -282,7 +282,7 @@ return [
             // 'levels' => ['notice', 'info', 'debug'],
         ],
         'error' => [
-            'url' => env('CAKEPHP_LOG_ERROR_URL', 'file:///?levels[]=warning&levels[]=error&levels[]=critical&levels[]=alert&levels[]=emergency&file=error&path=../logs/')
+            'url' => env('LOG_ERROR_URL', 'file:///?levels[]=warning&levels[]=error&levels[]=critical&levels[]=alert&levels[]=emergency&file=error&path=../logs/')
             // 'className' => 'Cake\Log\Engine\FileLog',
             // 'path' => LOGS,
             // 'file' => 'error',
