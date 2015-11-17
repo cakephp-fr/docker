@@ -1,8 +1,8 @@
 app:
     image: debian:jessie
     volumes:
-        - .:/var/www/app
-        - ./logs/cakephp:/var/www/app/logs
+        - .:/var/www/html
+        - ./logs/cakephp:/var/www/html/logs
     tty: true
 db:
     image: mysql:5.6.27
@@ -38,7 +38,6 @@ php:
         - app
     links:
         - db
-    working_dir: /var/www/app
     environment:
         - APP_DEBUG=1
         - APP_TIMEZONE_DEFAULT=UTC

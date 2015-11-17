@@ -1,28 +1,24 @@
-FROM debian:jessie
+FROM php:5.6-fpm
 
 MAINTAINER cake17 <cake17@cake-websites.com>
 
+# Install modules
 RUN apt-get update && apt-get install -y \
-  php5-common \
-  php5-cli \
-  php5-fpm \
-  php5-mysql \
-  php5-pgsql \
-  php5-apcu \
-  php5-gd \
-  php5-imagick \
-  php5-curl \
-  php5-intl \
-  php5-redis \
-  php5-sqlite
-
-#COPY cakephp.ini /etc/php5/fpm/conf.d/cakephp.ini
-#COPY cakephp.ini /etc/php5/cli/conf.d/cakephp.ini
-
-COPY cakephp.pool.conf /etc/php5/fpm/pool.d/cakephp.pool.conf
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng12-dev \
+        libpq-dev \
+        g++ \
+        libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install pdo_pgsql \
+    && apt-get purge --auto-remove -y g++ \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN usermod -u 1000 www-data
 
-CMD ["php5-fpm", "-F"]
-
-EXPOSE 9000
+CMD ["php-fpm"]
