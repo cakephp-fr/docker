@@ -1,6 +1,8 @@
 # Docker for CakePHP 3.x #
 
-I took some tips from this [nice repo](https://github.com/eko/docker-symfony)
+I took inspiration from the following repo:
+- [eko/docker-symfony](https://github.com/eko/docker-symfony)
+- [occitech/docker](https://github.com/occitech/docker)
 
 ## Install docker
 
@@ -16,16 +18,31 @@ First install docker on your computer with the [official doc](https://docs.docke
 
 ## Add a docker-compose.yml file and replace config files
 
-- In your app, add a `docker-compose.yml` file at the root of your app
+Clone the app skeleton on cakephp-fr github's repo and run composer:
 
-You can find an example in `cakephp/3.x/docker-composer.yml`.
-
-- You can replace your `app.php` and `bootstrap.php` with the provided config
-files.
+    git clone git@github.com:cakephp-fr/app.git
+    # the app skeleton is on the `docker` branch, so change for it
+    git checkout --track origin/docker
+    composer install
 
 Then run:
 
     docker-compose up -d
+
+You should see the welcome page in your webbrowser at the address http://MACHINE_IP:NGINX_PORT (ie. http://192.168.99.100:32779).
+
+To get the Nginx Port, run `docker-compose ps` to know on which port the containers are running. You'll get something like:
+
+  Name              Command          State               Ports              
+----------------------------------------------------------------------------
+app_app_1     /bin/bash               Up                                     
+app_db_1      /entrypoint.sh mysqld   Up      0.0.0.0:32788->3306/tcp        
+app_nginx_1   nginx -g daemon off;    Up      443/tcp, 0.0.0.0:32789->80/tcp
+app_php_1     php-fpm                 Up      9000/tcp                     
+
+So you can see that nginx is running on 32789's port in my case.
+
+A reminder to get the MACHINE_IP, run `docker-machine ip default`. Returns in my case `192.168.99.100`
 
 
 ## Common dev tasks, usage of `composer` and `cake` console.
