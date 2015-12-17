@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure intl \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install intl \
+    && docker-php-ext-install zip \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install pdo_pgsql \
     && apt-get purge --auto-remove -y g++ \

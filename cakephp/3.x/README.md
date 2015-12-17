@@ -16,9 +16,7 @@ First install docker on your computer with the [official doc](https://docs.docke
    containers will be launched. You will enter this address in your
    webbrowser to see your web pages.
 
-## Add a docker-compose.yml file and replace config files
-
-Clone the app skeleton on cakephp-fr github's repo and run composer:
+## Clone the app skeleton on cakephp-fr github's repo and run composer:
 
     git clone git@github.com:cakephp-fr/app.git
     # the app skeleton is on the `docker` branch, so change for it
@@ -51,15 +49,19 @@ A reminder to get the MACHINE_IP, run `docker-machine ip default`. Returns in my
 
 The best way to me is to add a `composer.phar` at the root of your repository.
 
-    # get CONTAINER_PHP_ID with docker ps
-    docker exec -it CONTAINER_PHP_ID ./composer.phar install
+    docker-compose run --rm php ./composer.phar install
 
 **For database migrations**
 
 To create your tables. You can use the [Migrations cakephp-plugin](https://github.com/cakephp/migrations):
 
-    # get CONTAINER_PHP_ID with docker ps
-    docker exec -it CONTAINER_PHP_ID ./bin/cake migrations migrate
+    docker-compose run --rm php ./bin/cake migrations migrate
+
+**To Test your application**
+
+To test your app with phpunit (must be installed with composer):
+
+    docker-compose run --rm php ./vendor/bin/phpunit
 
 
 ## License ##
