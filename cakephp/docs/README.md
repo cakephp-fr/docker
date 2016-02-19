@@ -1,19 +1,17 @@
 # Docker Images for CakePHP docs
 
-- [Full version](https://github.com/cake17/docker/tree/master/cakephp/docs) : Sphinx with latex
+- [Full version](https://github.com/cake17/docker/tree/master/cakephp/docs/full) : Sphinx with latex
 - [Light version](https://github.com/cake17/docker/tree/master/cakephp/docs/light) : Sphinx only
 
 # Build the Documentation with Docker
 
-Docker will let you create a container with all packages needed to build the
-docs. You need to have docker installed, see the [official docs of
-docker](http://docs.docker.com/mac/started/) for more information.
+Go to the [full documentation](https://github.com/cakephp/docs/tree/3.0) for more information.
 
 You can run all the commands to build the docs:
 
     # To build the html
     cd /path/to/your/local/docs
-    docker run -it --rm -v $(pwd):/data cakephpfr/docs make html
+    docker run -it --rm -v $(pwd):/data cakephpfr/docs:light make html
 
     # To build the epub
     cd /path/to/your/local/docs
