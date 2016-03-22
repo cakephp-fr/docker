@@ -4,6 +4,8 @@ MAINTAINER cake17 <cake17@cake-websites.com>
 
 # Install modules
 RUN apt-get update && apt-get install -y \
+        git \
+        curl \
         sqlite3 \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
