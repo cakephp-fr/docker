@@ -23,11 +23,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update \
-    && apt-get install git -y -q \
-    && git clone -b php7 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis \
-    && docker-php-ext-install redis
-
 RUN usermod -u 1000 www-data
 
 CMD ["php-fpm"]

@@ -23,10 +23,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pecl bundle -d /usr/src/php/ext redis \
-    && rm /usr/src/php/ext/redis-*.tgz \
-    && docker-php-ext-install redis
-
 RUN usermod -u 1000 www-data
 
 CMD ["php-fpm"]
