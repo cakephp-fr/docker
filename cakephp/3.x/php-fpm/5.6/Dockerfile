@@ -23,12 +23,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ENV PHPREDIS_VERSION 3.0.0
-
-RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz \
-    && tar xfz /tmp/redis.tar.gz \
-    && rm -r /tmp/redis.tar.gz \
-    && mv phpredis-$PHPREDIS_VERSION /usr/src/php/ext/redis \
+RUN pecl bundle -d /usr/src/php/ext redis \
+    && rm /usr/src/php/ext/redis-*.tgz \
     && docker-php-ext-install redis
 
 RUN usermod -u 1000 www-data
