@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-install redis \
     && apt-get purge --auto-remove -y g++ \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
