@@ -6,3 +6,5 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY conf.d/cakephp.conf /etc/nginx/conf.d/cakephp.conf
+
+RUN usermod -u 1000 www-data
